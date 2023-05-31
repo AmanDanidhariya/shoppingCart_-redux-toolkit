@@ -1,16 +1,19 @@
-
-import {Outlet} from 'react-router-dom'
-import Navbar from '../NavBar'
+import { Outlet } from "react-router-dom";
+import Navbar from "../NavBar";
+import { Provider } from "react-redux";
+import Store from "./store/Store";
 
 const RootLayout = () => {
   return (
     <>
-        <Navbar/>
+      <Provider store={Store}>
+        <Navbar />
         <main>
-            <Outlet/> 
+          <Outlet />
         </main>
+      </Provider>
     </>
-  )
-}
+  );
+};
 
-export default RootLayout
+export default RootLayout;
