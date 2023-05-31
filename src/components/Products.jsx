@@ -1,21 +1,46 @@
-import {useState, useEffect} from 'react';
-
+import { useState, useEffect } from "react";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 
 const Products = () => {
-  const [products, setProducts]  = useState([]);
+  const [products, setProducts] = useState([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     fetch("https://fakestoreapi.com/products")
-    .then(data=> data.json())
-    .then(result => setProducts(result))
-  },[])
-  console.log(products)
+      .then((data) => data.json())
+      .then((result) => setProducts(result));
+  }, []);
+
   return (
     <>
-        <h1>Products dashboard</h1>
-        {JSON.stringify(products)}
-    </>
-  )
-}
+      <h1>Products dashboard</h1>
+      <div className="row">
+        {products.map((product) => {
+          return (
+            <div className="col-md-3 mb-2" key={product.id}>
+              <Card style={{ width: "18rem" }} className="h-100">
+                <div className="text-center">
+                  <Card.Img
+                    variant="top"
+                    src={product.image}
+                    style={{ width: "100px", height: "130px" }}
+                  />
+                </div>
 
-export default Products
+                <Card.Body>
+                  <Card.Title>{product.title}</Card.Title>
+                  <Card.Text>INR.{product.price}</Card.Text>
+                </Card.Body>
+                <Card.Footer style={{backgroundColor: 'white'}}>
+                <Button variant="primary">Add to cart</Button>
+                </Card.Footer>
+              </Card>
+            </div>
+          );
+        })}
+      </div>
+    </>
+  );
+};
+
+export default Products;
