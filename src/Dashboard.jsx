@@ -1,8 +1,9 @@
-import React from 'react'
-
+import Products from "./components/Products"
 const Dashboard = () => {
   return (
-    <h3>Dashboard</h3>
+    <div className="">
+      <Products/>
+    </div>
   )
 }
 
