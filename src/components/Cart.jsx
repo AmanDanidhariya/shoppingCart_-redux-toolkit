@@ -8,8 +8,10 @@ const Cart = () => {
   const products = useSelector(state=>state.cart);
 
   const removeItem = (id) =>{
+    //dispatch  a remove action to remove item from cart
     dispatch(remove(id));
   }
+  
   return (
     <>
     <h3>Cart</h3>
